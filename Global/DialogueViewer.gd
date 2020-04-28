@@ -14,8 +14,12 @@ var num_visible_at_line := []
 onready var node_label: RichTextLabel = $Display/Label
 onready var node_disp: Control = $Display
 
+signal dialogue_finished()
+signal option_selected(index)
+
 func _ready():
-	show_dialogue(SAMPLETEXT)
+	node_disp.hide()
+#	show_dialogue(SAMPLETEXT)
 
 func split_text(text: String) -> PoolStringArray:
 	var ret := PoolStringArray()
@@ -57,10 +61,12 @@ func split_text(text: String) -> PoolStringArray:
 	return ret
 
 func show_dialogue(text: String):
+	node_disp.show()
 	node_label.clear()
+	node_label.visible_characters = 0
 	var arr := split_text(text)
 	while arr.size() % 3 != 0:
-		arr.append("a")
+		arr.append("")
 	node_label.clear()
 	var s := ""
 	var n := 0
@@ -88,6 +94,7 @@ func show_options(text: String, options: Array):
 
 func finish_dialogue():
 	node_disp.hide()
+	emit_signal("dialogue_finished")
 
 func _physics_process(delta):
 	var vis := node_label.visible_characters
