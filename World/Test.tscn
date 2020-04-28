@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/LevelBase.gd" type="Script" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 64, 512, 64, 320, 384, 320, 832, 512, 448, 256, 640, 320, 832, 320, 576, 256 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 6, 3 ), PoolIntArray( 5, 4, 7 ) ]
+outlines = [ PoolVector2Array( 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 832, 320, 832, 512, 64, 512 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 704, 128, 840, 128, 832, 192, 704, 320, 832, 320 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2 ) ]
+outlines = [ PoolVector2Array( 704, 320, 704, 128, 840, 128, 832, 192, 832, 320 ) ]
+
+[node name="TestLevel" type="Navigation2D"]
+script = ExtResource( 2 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 120, 368 )
