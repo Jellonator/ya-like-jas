@@ -32,6 +32,9 @@ func _ready():
 	node_disp.hide()
 #	show_dialogue(SAMPLETEXT)
 
+func is_busy() -> bool:
+	return node_disp.visible
+
 func split_text(text: String) -> PoolStringArray:
 	var ret := PoolStringArray()
 	var font := node_label.get_font("normal_font") as Font
@@ -155,15 +158,18 @@ func _physics_process(delta):
 	else:
 		sfx_bleep.stop()
 	if Input.is_action_just_pressed("on_click"):
-		current_scroll += LINES_ON_SCREEN
-		if current_scroll >= num_lines:
-			if not is_in_option:
-				finish_dialogue()
+		if node_label.visible_characters < maxchar:
+			node_label.visible_characters = maxchar
 		else:
-			sfx_bleep.play()
-			node_label.scroll_to_line(current_scroll)
-			if num_visible_at_line.size() > current_scroll:
-				node_label.visible_characters = num_visible_at_line[current_scroll]
+			current_scroll += LINES_ON_SCREEN
+			if current_scroll >= num_lines:
+				if not is_in_option:
+					finish_dialogue()
+			else:
+				sfx_bleep.play()
+				node_label.scroll_to_line(current_scroll)
+				if num_visible_at_line.size() > current_scroll:
+					node_label.visible_characters = num_visible_at_line[current_scroll]
 	if not is_in_option:
 		node_finish.visible = current_scroll+LINES_ON_SCREEN >= num_lines
 		node_continue.visible = not node_finish.visible

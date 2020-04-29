@@ -1,3 +1,54 @@
 {
-    
+    "type": "checkflag",
+    "flag": "NPC2_TALK",
+    "default": "unset",
+    ">set": {
+        "type": "checkflag",
+        "flag": "NPC3_TALK",
+        "default": "unset",
+        ">set": {
+            "type": "option",
+            "value": "Hello there, Beetective!",
+            "options": [
+                "Big, metal box with flashing lights?",
+                "What else do you know?"
+            ],
+            "0": [
+                "You mean an ambulance? Of course I know about them! The humans use them to deliver their sick to a place called the [color=#FF9900]hospital[/color].",
+                {
+                    "type": "setflag",
+                    "flag": "NPC2_CHECK",
+                    "value": "set"
+                }
+            ],
+            "1": [
+                "I don't know much else, but I do know quite about humans. If you have any questions about them, feel free to ask me!"
+            ]
+        },
+        ">unset": {
+            "type": "option",
+            "value": "Hello there, Beetective!",
+            "options": [
+                "What else do you know?"
+            ],
+            "0": [
+                "I don't know much else, but I do know quite about humans. If you have any questions about them, feel free to ask me!"
+            ]
+        }
+    },
+    ">unset": {
+        "type": "option",
+        "value": "Hello there, Beetective!",
+        "options": [
+            "What do you know about the Beekeeper?"
+        ],
+        "0": [
+            "I don't know much about the Beekeeper, but I do know that the humans have been behaving oddly. I was buzzing around the city and there were very few humans around, and the ones I did see were usually wearing masks.",
+            {
+                "type": "setflag",
+                "flag": "NPC2_TALK",
+                "value": "set"
+            }
+        ]
+    }
 }

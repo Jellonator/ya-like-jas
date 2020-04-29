@@ -1,0 +1,7 @@
+[
+    "I know now that the Beekeeper is sick, and that humans take their sick away in an ambulance to go to a hospital. I also have a confirmed sighting of one of these ambulances. From this, I can deduce that the Beekeeper is now in one of these hospitals. The problem now is figuring out which one, and where. My investigation into this conundrum continues.",
+    {
+        "type": "goto",
+        "target": "res://Gui/End.tscn"
+    }
+]

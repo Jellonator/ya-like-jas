@@ -1,3 +1,35 @@
 {
-    
+    "type": "checkflag",
+    "flag": "NPC3_TALK",
+    "default": "unset",
+    ">set": {
+        "type": "option",
+        "value": "Hey hun, what's going on?",
+        "options": [
+            "What else do you know?"
+        ],
+        "0": [
+            "Sorry hun, I ain't seen nothin' else since."
+        ]
+    },
+    ">unset": {
+        "type": "option",
+        "value": "Hey hun, what's going on?",
+        "options": [
+            "What do you know about the Beekeeper?"
+        ],
+        "0": [
+            "I was out by the flower fields a couple days ago, and some strange men with weird masks came in a [color=#FF9900]big, metal box with flashing lights[/color]. They seemed like bad news, so I bolted out of there.",
+            {
+                "type": "setflag",
+                "flag": "NPC3_TALK",
+                "value": "set"
+            },
+            {
+                "type": "setflag",
+                "flag": "NPC3_CHECK",
+                "value": "set"
+            }
+        ]
+    }
 }

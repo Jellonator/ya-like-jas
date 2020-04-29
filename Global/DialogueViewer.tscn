@@ -3,8 +3,8 @@
 [ext_resource path="res://Global/DialogueViewer.gd" type="Script" id=1]
 [ext_resource path="res://Ext/FontDialogue.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Ext/KenneyUI/PNG/grey_box.png" type="Texture" id=3]
-[ext_resource path="res://Ext/KenneyUI/PNG/grey_arrowDownGrey.png" type="Texture" id=4]
-[ext_resource path="res://Ext/KenneyUI/PNG/grey_checkmarkGrey.png" type="Texture" id=5]
+[ext_resource path="res://Ext/KenneyUI/PNG/grey_checkmarkWhite.png" type="Texture" id=4]
+[ext_resource path="res://Ext/KenneyUI/PNG/grey_arrowDownWhite.png" type="Texture" id=5]
 [ext_resource path="res://Sfx/EssentialRetroPack/sfx_movement_ladder1b.wav" type="AudioStream" id=6]
 
 [node name="DialogueViewer" type="CanvasLayer"]
@@ -73,7 +73,7 @@ __meta__ = {
 
 [node name="IconContinue" type="TextureRect" parent="Display"]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 1, 0.72549, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -82,14 +82,14 @@ margin_left = -7.0
 margin_top = -164.0
 margin_right = 8.0
 margin_bottom = -154.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="IconFinish" type="TextureRect" parent="Display"]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 1, 0.72549, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -98,7 +98,7 @@ margin_left = -10.5
 margin_top = -172.0
 margin_right = 10.5
 margin_bottom = -152.0
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

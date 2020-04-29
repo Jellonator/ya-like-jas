@@ -1,3 +1,35 @@
 {
-    
+    "type": "checkflag",
+    "flag": "NPC1_TALK",
+    "default": "unset",
+    ">set": {
+        "type": "option",
+        "value": "How can I help you, Beetective?",
+        "options": [
+            "What else do you know?"
+        ],
+        "0": [
+            "I'm afraid all I know is that he is sick."
+        ]
+    },
+    ">unset": {
+        "type": "option",
+        "value": "How can I help you, Beetective?",
+        "options": [
+            "What do you know about the Beekeeper?"
+        ],
+        "0": [
+            "Last time I seen him, he was awfully [color=#FF9900]pale and sickly.[/color]",
+            {
+                "type": "setflag",
+                "flag": "NPC1_TALK",
+                "value": "set"
+            },
+            {
+                "type": "setflag",
+                "flag": "NPC1_CHECK",
+                "value": "set"
+            }
+        ]
+    }
 }
