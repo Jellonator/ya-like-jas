@@ -1,6 +1,7 @@
 tool
 extends KinematicBody2D
 
+export(bool) var activate_on_load := false
 export(String, FILE, "*.json") var speech_file;
 export(int) var priority := 0
 export(Vector2) var position_offset := Vector2(0, 32) setget set_position_offset, get_position_offset
@@ -51,6 +52,16 @@ func do_option(data: Dictionary):
 			txt, speech_file]))
 		return
 
+func do_goto(data: Dictionary):
+	if not data.has("target"):
+		printerr("goto has no valid target in {}").format([speech_file])
+		return
+	var target = data["target"]
+	var err = get_tree().change_scene(target)
+	if err != OK:
+		printerr("Encountered error {} when trying to change scene in {}".format([\
+			err, speech_file]))
+
 func do_setflag(data: Dictionary):
 	if not data.has("flag"):
 		printerr("Missing flag for setflag in {}".format([speech_file]))
@@ -91,6 +102,8 @@ func do_speech_dict(data: Dictionary):
 			var co = do_setflag(data)
 			if co is GDScriptFunctionState:
 				yield(co, "completed")
+		"goto":
+			do_goto(data)
 		_:
 			printerr("Unknown speech action {}: {}, in {}".format([
 				tname, data, speech_file]))
@@ -129,8 +142,9 @@ func _ready():
 	if Engine.editor_hint:
 		return
 	load_speech()
-	connect("mouse_entered", self, "_on_mouse_entered")
-	connect("mouse_exited", self, "_on_mouse_exited")
+	if not activate_on_load:
+		connect("mouse_entered", self, "_on_mouse_entered")
+		connect("mouse_exited", self, "_on_mouse_exited")
 
 func _draw():
 	if Engine.editor_hint:
