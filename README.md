@@ -28,7 +28,7 @@ This is how the game is played:
 It's a point and click adventure game, so you can click on who you want to talk to and fly over. 
 
 Future plans:
-To create a simple fun point and click adventure that anyone can enjoy.
+To create a simple fun point and click adventure that anyone can enjoy. In the future we want to do more levels, have animations for the characters and create a bigger story
 ---
 
 ###Team Members
