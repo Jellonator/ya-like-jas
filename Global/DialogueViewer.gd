@@ -22,6 +22,7 @@ func read_from_dialogue_stack():
 func _ready():
 	node_label.rect_clip_content = false
 	show_dialogue(TEXT)
+	$Talk.play()
 
 func split_text(text: String) -> PoolStringArray:
 	var ret := PoolStringArray()
@@ -68,6 +69,7 @@ func _physics_process(delta):
 	if vis < node_label.get_total_character_count():
 		node_label.visible_characters += 1
 	if Input.is_action_just_pressed("on_click"):
+		$Talk.play()
 		if dialogue_stack.size() == 0:
 			print("FINISHED")
 		else:

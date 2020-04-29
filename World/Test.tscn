@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/LevelBase.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/8-bit Detective.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/BuzzLong.wav" type="AudioStream" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 64, 512, 64, 320, 384, 320, 832, 512, 448, 256, 640, 320, 832, 320, 576, 256 )
@@ -24,3 +26,13 @@ navpoly = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 120, 368 )
+
+[node name="TalkingTest" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -8.078
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="BeetectiveMusic" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 3 )
+autoplay = true

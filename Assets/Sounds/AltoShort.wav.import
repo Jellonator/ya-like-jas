@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AltoShort.wav-b922700d2d6e6d76e54d5bc28dbfe85c.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/AltoShort.wav"
+dest_files=[ "res://.import/AltoShort.wav-b922700d2d6e6d76e54d5bc28dbfe85c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
