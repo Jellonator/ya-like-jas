@@ -12,8 +12,3 @@ func can_navigate_to(point: Vector2) -> bool:
 func get_navigation_path(start: Vector2, destination: Vector2):
 	destination = get_navigation_point(destination)
 	return get_simple_path(start, destination)
-
-
-
-func _on_BackgroundMusic_finished():
-	$Soundtrack/BackgroundMusic.play()

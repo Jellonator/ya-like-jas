@@ -8,6 +8,7 @@ func _ready():
 
 func _on_Initialize_dialogue_finished():
 	target_fade = 0.0
+	$Soundtrack/BackgroundMusic.play()
 
 func _physics_process(delta):
 	if target_fade > DialogueViewer.fade:

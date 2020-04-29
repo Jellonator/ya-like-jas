@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World/Level.gd" type="Script" id=1]
 [ext_resource path="res://Object/Interact/TestNPC.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/8-bit Detective.wav" type="AudioStream" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 108, 500, 124, 156, 852, 180, 880, 512 )
@@ -33,4 +34,10 @@ position = Vector2( 448, 208 )
 
 [node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 640, 220 )
+
+[node name="Soundtrack" type="Node2D" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Soundtrack"]
+stream = ExtResource( 4 )
+volume_db = -12.0
 [connection signal="dialogue_finished" from="Initialize" to="." method="_on_Initialize_dialogue_finished"]
