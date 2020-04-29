@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/LevelBase.gd" type="Script" id=2]
 [ext_resource path="res://Object/Interact/TestNPC.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/8-bit Detective.wav" type="AudioStream" id=4]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 704, 128, 840, 128, 832, 192, 704, 320, 832, 320, 64, 512, 64, 320, 384, 320, 832, 512, 448, 256, 640, 320, 576, 256 )
@@ -44,3 +45,11 @@ polygon = PoolVector2Array( 64, 512, 64, 496, 832, 496, 832, 512 )
 z_index = -1
 color = Color( 0.568627, 0.490196, 0.380392, 1 )
 polygon = PoolVector2Array( 64, 512, 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 704, 320, 704, 128, 840, 128, 832, 192, 832, 512 )
+
+[node name="Soundtrack" type="Node2D" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Soundtrack"]
+stream = ExtResource( 4 )
+volume_db = -6.058
+autoplay = true
+[connection signal="finished" from="Soundtrack/BackgroundMusic" to="." method="_on_BackgroundMusic_finished"]
