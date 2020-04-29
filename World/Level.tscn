@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World/Level.gd" type="Script" id=1]
 [ext_resource path="res://Object/Interact/TestNPC.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/8-bit Detective.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/LineupBW.jpg" type="Texture" id=5]
+[ext_resource path="res://Assets/Suspect3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Suspect2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Suspect1.png" type="Texture" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 600, 0, 468, 1020, 472, 1024, 600 )
@@ -20,13 +23,10 @@ scale = Vector2( 0.312074, 0.248445 )
 texture = ExtResource( 5 )
 
 [node name="Initialize" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -192, 132 )
 activate_on_load = true
 speech_file = "res://World/intro.json"
-
-[node name="Ending" parent="." instance=ExtResource( 2 )]
-position = Vector2( -192, 248 )
-speech_file = "res://World/ending.json"
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )
@@ -38,15 +38,37 @@ position = Vector2( 60, 568 )
 
 [node name="TestNPC" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 460, 472 )
-speech_file = "res://World/npc1.json"
+
+[node name="Suspect4" type="Sprite" parent="YSort"]
+position = Vector2( 267.251, 175.61 )
+scale = Vector2( 0.408195, 0.343031 )
+texture = ExtResource( 8 )
+
+[node name="Suspect3" type="Sprite" parent="YSort"]
+position = Vector2( 649.193, 203.043 )
+scale = Vector2( 0.408017, 0.355591 )
+texture = ExtResource( 6 )
+
+[node name="Suspect2" type="Sprite" parent="YSort"]
+position = Vector2( 463.403, 207.708 )
+scale = Vector2( -0.402688, 0.355591 )
+texture = ExtResource( 7 )
 
 [node name="TestNPC2" parent="YSort" instance=ExtResource( 2 )]
+<<<<<<< HEAD
+position = Vector2( 448, 208 )
+speech_file = "res://World/Test/npctest2.json"
+
+[node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 640, 220 )
+=======
 position = Vector2( 648, 464 )
-speech_file = "res://World/npc2.json"
+speech_file = "res://World/Test/npctest2.json"
 
 [node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 828, 476 )
-speech_file = "res://World/npc3.json"
+>>>>>>> a15fe05abbca0d122f0359790f2fc7e1f6a41cc6
+speech_file = "res://World/Test/npctest3.json"
 
 [node name="Soundtrack" type="Node2D" parent="."]
 
@@ -54,4 +76,3 @@ speech_file = "res://World/npc3.json"
 stream = ExtResource( 4 )
 volume_db = -12.0
 [connection signal="dialogue_finished" from="Initialize" to="." method="_on_Initialize_dialogue_finished"]
-[connection signal="dialogue_finished" from="Ending" to="." method="_on_Initialize_dialogue_finished"]

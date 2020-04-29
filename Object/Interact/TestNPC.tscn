@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Object/Interact/InteractableObjectBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Suspect1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 48 )
@@ -11,11 +12,19 @@ speech_file = "res://World/Test/npctest1.json"
 position_offset = Vector2( 0, 32 )
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="0"]
+visible = false
 show_behind_parent = true
 position = Vector2( 0, -32 )
 color = Color( 0.00392157, 1, 0, 1 )
 polygon = PoolVector2Array( -40, -40, 40, -40, 40, 56, -40, 56 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2( 0, -24 )
 shape = SubResource( 1 )
+
+[node name="Suspect1" type="Sprite" parent="." index="2"]
+visible = false
+position = Vector2( 1.73975, -17.3972 )
+scale = Vector2( -0.43769, 0.373087 )
+texture = ExtResource( 2 )
