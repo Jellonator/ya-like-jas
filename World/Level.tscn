@@ -10,9 +10,9 @@
 [ext_resource path="res://Assets/Suspect1.png" type="Texture" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 108, 500, 124, 156, 852, 180, 880, 512 )
+vertices = PoolVector2Array( 0, 600, 0, 468, 1020, 472, 1024, 600 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 108, 500, 124, 156, 852, 180, 880, 512 ) ]
+outlines = [ PoolVector2Array( 0, 600, 0, 468, 1020, 472, 1024, 600 ) ]
 
 [node name="Level" type="Navigation2D"]
 script = ExtResource( 1 )
@@ -26,6 +26,7 @@ texture = ExtResource( 5 )
 visible = false
 position = Vector2( -192, 132 )
 activate_on_load = true
+speech_file = "res://World/intro.json"
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )
@@ -33,10 +34,10 @@ navpoly = SubResource( 1 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 208, 424 )
+position = Vector2( 60, 568 )
 
 [node name="TestNPC" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 264, 200 )
+position = Vector2( 460, 472 )
 
 [node name="Suspect4" type="Sprite" parent="YSort"]
 position = Vector2( 267.251, 175.61 )
@@ -54,11 +55,19 @@ scale = Vector2( -0.402688, 0.355591 )
 texture = ExtResource( 7 )
 
 [node name="TestNPC2" parent="YSort" instance=ExtResource( 2 )]
+<<<<<<< HEAD
 position = Vector2( 448, 208 )
 speech_file = "res://World/Test/npctest2.json"
 
 [node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 640, 220 )
+=======
+position = Vector2( 648, 464 )
+speech_file = "res://World/Test/npctest2.json"
+
+[node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 828, 476 )
+>>>>>>> a15fe05abbca0d122f0359790f2fc7e1f6a41cc6
 speech_file = "res://World/Test/npctest3.json"
 
 [node name="Soundtrack" type="Node2D" parent="."]
