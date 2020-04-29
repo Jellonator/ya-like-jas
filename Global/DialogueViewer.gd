@@ -9,6 +9,14 @@ var current_scroll := 0
 var num_lines := 0
 var num_visible_at_line := []
 var is_in_option := false
+var fade := 0.0 setget set_fade, get_fade
+
+func set_fade(value: float):
+	fade = value
+	$Polygon2D.modulate = Color(0, 0, 0, value)
+
+func get_fade() -> float:
+	return fade
 
 onready var node_label: RichTextLabel = $Display/Label
 onready var node_disp: Control = $Display

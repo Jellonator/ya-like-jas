@@ -7,6 +7,8 @@ export(int) var priority := 0
 export(Vector2) var position_offset := Vector2(0, 32) setget set_position_offset, get_position_offset
 var speech_data;
 
+signal dialogue_finished();
+
 func set_position_offset(value: Vector2):
 	position_offset = value
 	update()
@@ -142,7 +144,9 @@ func _ready():
 	if Engine.editor_hint:
 		return
 	load_speech()
-	if not activate_on_load:
+	if activate_on_load:
+		interact()
+	else:
 		connect("mouse_entered", self, "_on_mouse_entered")
 		connect("mouse_exited", self, "_on_mouse_exited")
 
@@ -158,7 +162,10 @@ func _on_mouse_exited():
 	GameData.remove_moused_object(self)
 
 func interact():
-	do_speech_part(speech_data)
+	var co = do_speech_part(speech_data)
+	if co is GDScriptFunctionState:
+		yield(co, "completed")
+	emit_signal("dialogue_finished")
 
 func get_target_location() -> Vector2:
 	return to_global(position_offset)
