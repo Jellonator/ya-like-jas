@@ -147,7 +147,6 @@ func _physics_process(delta):
 	else:
 		sfx_bleep.stop()
 	if Input.is_action_just_pressed("on_click"):
-		print("======")
 		current_scroll += LINES_ON_SCREEN
 		if current_scroll >= num_lines:
 			if not is_in_option:
@@ -156,9 +155,7 @@ func _physics_process(delta):
 			sfx_bleep.play()
 			node_label.scroll_to_line(current_scroll)
 			if num_visible_at_line.size() > current_scroll:
-				print(num_visible_at_line)
 				node_label.visible_characters = num_visible_at_line[current_scroll]
-				print(node_label.visible_characters)
 	if not is_in_option:
 		node_finish.visible = current_scroll+LINES_ON_SCREEN >= num_lines
 		node_continue.visible = not node_finish.visible
