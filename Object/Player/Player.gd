@@ -17,6 +17,7 @@ func set_on_path(newpath: PoolVector2Array):
 	path_is_following = true
 
 func _physics_process(delta):
+	var oldpos = global_position
 	var obj = GameData.get_moused_object()
 	if level.can_navigate_to(get_global_mouse_position()) or obj != null:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -46,6 +47,11 @@ func _physics_process(delta):
 					path_position = 0.0
 				else:
 					global_position = p1.linear_interpolate(p2, path_position)
+	var newpos = global_position
+	if newpos.x > oldpos.x:
+		$Beetective.flip_h = false
+	elif newpos.x < oldpos.x:
+		$Beetective.flip_h = true
 
 func _unhandled_input(event):
 	if event.is_action_pressed("on_click") and can_change_path:
