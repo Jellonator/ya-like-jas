@@ -10,6 +10,7 @@ const MAXWIDTH := 992.0
 var current_scroll := 0
 var num_lines := 0
 var num_visible_at_line := []
+var is_in_option := false
 
 onready var node_label: RichTextLabel = $Display/Label
 onready var node_disp: Control = $Display
@@ -88,13 +89,15 @@ func show_dialogue(text: String):
 	node_label.parse_bbcode(s)
 	num_lines = arr.size()
 	current_scroll = 0
+	is_in_option = false
 
 func show_options(text: String, options: Array):
-	pass
+	is_in_option = true
 
 func finish_dialogue():
 	node_disp.hide()
 	emit_signal("dialogue_finished")
+	is_in_option = false
 
 func _physics_process(delta):
 	var vis := node_label.visible_characters

@@ -4,3 +4,4 @@
 
 [node name="InteractableObjectBase" type="KinematicBody2D"]
 script = ExtResource( 1 )
+position_offset = Vector2( 0, 16 )

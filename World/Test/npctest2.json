@@ -1,0 +1,17 @@
+[
+    "Cool!",
+    {
+        "type": "checkflag",
+        "flag": "npctest2",
+        "default": "unset",
+        ">set": "You've already spoken to me!",
+        ">unset": [
+            "Hi, this is the first time you've spoken to me!",
+            {
+                "type": "setflag",
+                "flag": "npctest2",
+                "value": "set"
+            }
+        ]
+    }
+]

@@ -29,7 +29,11 @@ navpoly = SubResource( 2 )
 position = Vector2( 120, 368 )
 
 [node name="TestNPC" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 320, 360 )
+position = Vector2( 320, 320 )
+
+[node name="TestNPC2" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 520, 256 )
+speech_file = "res://World/Test/npctest2.json"
 
 [node name="Polygon2D" type="Polygon2D" parent="YSort"]
 polygon = PoolVector2Array( 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 704, 320, 704, 304, 640, 304, 576, 240, 448, 240, 384, 304, 64, 304 )

@@ -8,13 +8,14 @@ extents = Vector2( 40, 48 )
 [node name="TestNPC" instance=ExtResource( 1 )]
 input_pickable = true
 speech_file = "res://World/Test/npctest1.json"
+position_offset = Vector2( 0, 32 )
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="0"]
 show_behind_parent = true
-position = Vector2( 0, -56 )
+position = Vector2( 0, -32 )
 color = Color( 0.00392157, 1, 0, 1 )
 polygon = PoolVector2Array( -40, -40, 40, -40, 40, 56, -40, 56 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, -48 )
+position = Vector2( 0, -24 )
 shape = SubResource( 1 )

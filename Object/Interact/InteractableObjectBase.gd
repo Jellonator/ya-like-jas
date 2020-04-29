@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 export(String, FILE, "*.json") var speech_file;
 export(int) var priority := 0
-export(Vector2) var position_offset := Vector2(0, 16) setget set_position_offset, get_position_offset
+export(Vector2) var position_offset := Vector2(0, 32) setget set_position_offset, get_position_offset
 var speech_data;
 
 func set_position_offset(value: Vector2):
@@ -48,12 +48,12 @@ func do_checkflag(data: Dictionary):
 		printerr("Missing flag for checkflag in {}".format([speech_file]))
 		return
 	var flagname = data.get("flag")
-	var flagvalue = GameData.get_flag(flagname, data.get("default", ""))
+	var flagvalue = ">" + GameData.get_flag(flagname, data.get("default", ""))
 	if not data.has(flagvalue):
 		printerr("Missing handler for flag value {} in checkflag: {}".format([
 			flagvalue, speech_file]))
 		return
-	var co = do_speech_dict(data[flagvalue])
+	var co = do_speech_part(data[flagvalue])
 	if co is GDScriptFunctionState:
 		yield(co, "completed")
 
