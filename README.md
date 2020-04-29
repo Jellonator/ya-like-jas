@@ -28,10 +28,10 @@ Future plans:
 ###Team Members
 
   * Jocelyn Beedie
-    * Programming
+    * All Programming
   * Samantha Galati
     * Background music
-    * Some art
+    * Art
   * Alysha Pitman
     * Scriptwriting
 
