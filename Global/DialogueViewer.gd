@@ -1,11 +1,7 @@
 extends CanvasLayer
 
+const LINES_ON_SCREEN := 4
 const SCENE_BUTTON := preload("res://Gui/ButtonYellow.tscn")
-
-const SAMPLETEXT := "According to all the known laws of aviation, there is no way that" +\
-	" the bumblebee should be able to fly.\n" +\
-	"The [color=#FFCC00]bee[/color], of course, flies anyways, because bees don't care what humans think" +\
-	" is impossible." + "\n  teehee"
 
 const MAXWIDTH := 992.0
 
@@ -17,6 +13,9 @@ var is_in_option := false
 onready var node_label: RichTextLabel = $Display/Label
 onready var node_disp: Control = $Display
 onready var node_options: Container = $Display/Option/VBox
+onready var node_continue: Control = $Display/IconContinue
+onready var node_finish: Control = $Display/IconFinish
+onready var sfx_bleep: AudioStreamPlayer = $AudioStreamPlayer
 
 signal dialogue_finished()
 signal option_selected(index)
@@ -69,13 +68,16 @@ func show_dialogue(text: String):
 	node_disp.show()
 	node_label.clear()
 	node_label.visible_characters = 0
+	num_visible_at_line.clear()
 	var arr := split_text(text)
-	while arr.size() % 3 != 0:
-		arr.append("")
 	node_label.clear()
 	var s := ""
 	var n := 0
 	var is_in_bracket := false
+	# A line break is inserted between every three lines
+	# so that their content doesn't bleed into each other.
+	var line_number := 0
+	num_lines = 0
 	for i in range(arr.size()):
 		num_visible_at_line.append(n)
 		if i > 0:
@@ -90,10 +92,20 @@ func show_dialogue(text: String):
 					is_in_bracket = true
 				else:
 					n += 1
+		line_number += 1
+		num_lines += 1
+		if line_number % (LINES_ON_SCREEN - 1) == 0:
+			num_visible_at_line.append(n)
+			s += '\n'
+			num_lines += 1
+	while num_lines % LINES_ON_SCREEN != 0:
+		s += '\n'
+		num_lines += 1
 	node_label.parse_bbcode(s)
-	num_lines = arr.size()
 	current_scroll = 0
 	is_in_option = false
+	sfx_bleep.play()
+	node_label.scroll_to_line(0)
 
 func show_options(text: String, options: Array):
 	show_dialogue(text)
@@ -108,6 +120,8 @@ func show_options(text: String, options: Array):
 		node.connect("pressed", self, "_on_button_pressed", [index])
 		index += 1
 	node_options.show()
+	node_continue.hide()
+	node_finish.hide()
 
 func _on_button_pressed(index: int):
 	node_options.hide()
@@ -119,17 +133,32 @@ func finish_dialogue():
 	node_disp.hide()
 	emit_signal("dialogue_finished")
 	is_in_option = false
+	sfx_bleep.stop()
 
 func _physics_process(delta):
+	if not node_disp.visible:
+		return
 	var vis := node_label.visible_characters
-	if vis < node_label.get_total_character_count():
+	var maxchar := node_label.get_total_character_count()
+	if current_scroll + LINES_ON_SCREEN < num_lines:
+		maxchar = num_visible_at_line[current_scroll + LINES_ON_SCREEN]
+	if vis < maxchar:
 		node_label.visible_characters += 1
+	else:
+		sfx_bleep.stop()
 	if Input.is_action_just_pressed("on_click"):
-		current_scroll += 3
+		print("======")
+		current_scroll += LINES_ON_SCREEN
 		if current_scroll >= num_lines:
 			if not is_in_option:
 				finish_dialogue()
 		else:
+			sfx_bleep.play()
 			node_label.scroll_to_line(current_scroll)
 			if num_visible_at_line.size() > current_scroll:
+				print(num_visible_at_line)
 				node_label.visible_characters = num_visible_at_line[current_scroll]
+				print(node_label.visible_characters)
+	if not is_in_option:
+		node_finish.visible = current_scroll+LINES_ON_SCREEN >= num_lines
+		node_continue.visible = not node_finish.visible

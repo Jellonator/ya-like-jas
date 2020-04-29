@@ -1,9 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Ext/KenneyFont/Fonts/Kenney Future.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Ext/NotoSansUI_Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 30
-use_mipmaps = true
-use_filter = true
+size = 36
 font_data = ExtResource( 1 )
