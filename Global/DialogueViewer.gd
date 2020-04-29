@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const SCENE_BUTTON := preload("res://Gui/ButtonYellow.tscn")
+
 const SAMPLETEXT := "According to all the known laws of aviation, there is no way that" +\
 	" the bumblebee should be able to fly.\n" +\
 	"The [color=#FFCC00]bee[/color], of course, flies anyways, because bees don't care what humans think" +\
@@ -14,6 +16,7 @@ var is_in_option := false
 
 onready var node_label: RichTextLabel = $Display/Label
 onready var node_disp: Control = $Display
+onready var node_options: Container = $Display/Option/VBox
 
 signal dialogue_finished()
 signal option_selected(index)
@@ -62,6 +65,7 @@ func split_text(text: String) -> PoolStringArray:
 	return ret
 
 func show_dialogue(text: String):
+	node_options.hide()
 	node_disp.show()
 	node_label.clear()
 	node_label.visible_characters = 0
@@ -92,7 +96,24 @@ func show_dialogue(text: String):
 	is_in_option = false
 
 func show_options(text: String, options: Array):
+	show_dialogue(text)
 	is_in_option = true
+	for node in node_options.get_children():
+		node.queue_free()
+	var index := 0
+	for item in options:
+		var node: Button = SCENE_BUTTON.instance() as Button
+		node.text = item
+		node_options.add_child(node)
+		node.connect("pressed", self, "_on_button_pressed", [index])
+		index += 1
+	node_options.show()
+
+func _on_button_pressed(index: int):
+	node_options.hide()
+	node_disp.hide()
+	is_in_option = false
+	emit_signal("option_selected", index)
 
 func finish_dialogue():
 	node_disp.hide()
@@ -106,7 +127,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("on_click"):
 		current_scroll += 3
 		if current_scroll >= num_lines:
-			finish_dialogue()
+			if not is_in_option:
+				finish_dialogue()
 		else:
 			node_label.scroll_to_line(current_scroll)
 			if num_visible_at_line.size() > current_scroll:

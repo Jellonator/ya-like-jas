@@ -13,7 +13,6 @@ func set_position_offset(value: Vector2):
 func get_position_offset() -> Vector2:
 	return position_offset
 
-
 # The following code is fairly yield heavy, so I'm just going to explain what's
 # happening:
 #  * dialogue is displayed to the user, so signals have to be used to know when
@@ -32,7 +31,25 @@ func do_print(data: String):
 	yield(DialogueViewer, "dialogue_finished")
 
 func do_option(data: Dictionary):
-	pass
+	var text = data.get("value", "???")
+	var options = data.get("options")
+	if typeof(options) != TYPE_ARRAY:
+		printerr("Tag 'options' should be an array in {}".format([speech_file]))
+		return
+	if options.size() == 0:
+		printerr("Tag 'options' has no elements in {}".format([speech_file]))
+		return
+	DialogueViewer.show_options(text, options)
+	var index = yield(DialogueViewer, "option_selected")
+	var txt = str(index)
+	if txt in data:
+		var co = do_speech_part(data[txt])
+		if co is GDScriptFunctionState:
+			yield(co, "completed")
+	else:
+		printerr("Missing handler for index {} in option: {}".format([
+			txt, speech_file]))
+		return
 
 func do_setflag(data: Dictionary):
 	if not data.has("flag"):
@@ -63,7 +80,9 @@ func do_speech_dict(data: Dictionary):
 		"print":
 			yield(do_print(data.get("value", "")), "completed")
 		"option":
-			yield(do_option(data), "completed")
+			var co = do_option(data)
+			if co is GDScriptFunctionState:
+				yield(co, "completed")
 		"checkflag":
 			var co = do_checkflag(data)
 			if co is GDScriptFunctionState:
@@ -128,4 +147,4 @@ func interact():
 	do_speech_part(speech_data)
 
 func get_target_location() -> Vector2:
-	return global_transform.xform(position_offset)
+	return to_global(position_offset)

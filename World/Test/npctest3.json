@@ -1,0 +1,12 @@
+{
+    "type": "option",
+    "value": "What's happening?",
+    "options": [
+        "Just saying hi",
+        "Bzzz",
+        "I'm vibing"
+    ],
+    "0": "Hi!",
+    "1": "Bzzzzzzz",
+    "2": "Cool"
+}

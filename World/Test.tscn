@@ -1,18 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Object/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/LevelBase.gd" type="Script" id=2]
 [ext_resource path="res://Object/Interact/TestNPC.tscn" type="PackedScene" id=3]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 64, 512, 64, 320, 384, 320, 832, 512, 448, 256, 640, 320, 832, 320, 576, 256 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 5, 6, 3 ), PoolIntArray( 5, 4, 7 ) ]
-outlines = [ PoolVector2Array( 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 832, 320, 832, 512, 64, 512 ) ]
-
-[sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 704, 128, 840, 128, 832, 192, 704, 320, 832, 320 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2 ) ]
-outlines = [ PoolVector2Array( 704, 320, 704, 128, 840, 128, 832, 192, 832, 320 ) ]
+vertices = PoolVector2Array( 704, 128, 840, 128, 832, 192, 704, 320, 832, 320, 64, 512, 64, 320, 384, 320, 832, 512, 448, 256, 640, 320, 576, 256 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 8, 7, 9, 10 ), PoolIntArray( 3, 4, 8 ), PoolIntArray( 10, 3, 8 ), PoolIntArray( 10, 9, 11 ) ]
+outlines = [ PoolVector2Array( 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 704, 320, 704, 128, 840, 128, 832, 192, 832, 320, 832, 512, 64, 512 ) ]
 
 [node name="TestLevel" type="Navigation2D"]
 script = ExtResource( 2 )
@@ -20,13 +15,10 @@ script = ExtResource( 2 )
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )
 
-[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
-navpoly = SubResource( 2 )
-
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 120, 368 )
+position = Vector2( 176, 368 )
 
 [node name="TestNPC" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 320, 320 )
@@ -34,6 +26,10 @@ position = Vector2( 320, 320 )
 [node name="TestNPC2" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 520, 256 )
 speech_file = "res://World/Test/npctest2.json"
+
+[node name="TestNPC3" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 768, 136 )
+speech_file = "res://World/Test/npctest3.json"
 
 [node name="Polygon2D" type="Polygon2D" parent="YSort"]
 polygon = PoolVector2Array( 64, 320, 384, 320, 448, 256, 576, 256, 640, 320, 704, 320, 704, 304, 640, 304, 576, 240, 448, 240, 384, 304, 64, 304 )
