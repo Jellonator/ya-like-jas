@@ -1,0 +1,48 @@
+Name: Harrison Hinkle
+Date: 5/2/20
+
+Project: Beetective
+Group's repository: Jellonator/ya-like-jas
+
+
+
+What is something you learned by reviewing this group's project?
+
+ That learned about the Y-sort node and how it sorts child nodes base on position.
+
+In what ways does this game reflect the theme?
+
+ It's about a bunch of bees trying to figure out where the beekeeper went. They find out they were take to a hospital, I'm assuming
+he caught the virus.  
+
+What is something you saw in this group's project that you would like to apply to your own future games?
+
+ I'll probably use the Y-sort node to keep thing more organized.
+
+What suggestions would you have for this group to improve the game?
+
+ Turn down the music a bit. It was just a little too loud
+
+Was there anything in the GDScript that was confusing to you? If so, what?
+
+ I was thrown off by how there are only two scripts, until I realized every interactible object/character share the same one
+
+Is it clear that every group member participated?
+
+ Yes, each person's job was listed in the repository and all were preformed adequately
+
+Does the repository contain an appropriate LICENSE?
+
+ Yes.
+
+What is something the group could add to the README.md to make it more descriptive?
+
+Explain what BL-MSCH-C220 stands for. People not in the class will see it and not know what that means.
+
+Pay a compliment to the group based on the quality of the game.
+
+I really like the sound effects and overall sound quality.
+
+How many of your points would you allocate to this project?
+
+4
