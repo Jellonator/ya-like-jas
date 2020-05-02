@@ -27,11 +27,14 @@ visible = false
 position = Vector2( -192, 132 )
 activate_on_load = true
 speech_file = "res://World/intro.json"
+priority = 0
 
 [node name="Ending" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( -192, 132 )
+activate_on_load = false
 speech_file = "res://World/ending.json"
+priority = 0
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )
@@ -43,7 +46,9 @@ position = Vector2( 60, 568 )
 
 [node name="TestNPC" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 448, 464 )
+activate_on_load = false
 speech_file = "res://World/npc1.json"
+priority = 0
 
 [node name="Suspect4" type="Sprite" parent="YSort"]
 position = Vector2( 456, 444 )
@@ -62,11 +67,15 @@ texture = ExtResource( 7 )
 
 [node name="TestNPC2" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 644, 444 )
+activate_on_load = false
 speech_file = "res://World/npc2.json"
+priority = 0
 
 [node name="TestNPC3" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 828, 476 )
+activate_on_load = false
 speech_file = "res://World/npc3.json"
+priority = 0
 
 [node name="Soundtrack" type="Node2D" parent="."]
 
